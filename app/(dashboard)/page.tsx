@@ -1,8 +1,10 @@
-import Image from "next/image";
-import { UserButton } from "@clerk/nextjs";
 
 export default function Home() {
   return (
-    <div>Hello</div>
+    <div className="container pt-4">Hello</div>
   );
+}
+
+function CardStatsWrapper() {
+  
 }
