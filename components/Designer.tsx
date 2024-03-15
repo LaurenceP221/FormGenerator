@@ -239,7 +239,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
             <Button
               variant={"outline"}
               className="flex justify-center h-full border rounded-md rounded-l-none
-            bg-red-500"
+            bg-red-500 opacity-100"
               onClick={(e) => {
                 e.stopPropagation();
                 removeElement(element.id);
