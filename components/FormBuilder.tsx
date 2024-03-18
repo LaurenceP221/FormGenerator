@@ -22,6 +22,7 @@ import { Input } from "./ui/input";
 import Link from "next/link";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import Confetti from "react-confetti";
+import QRCode from "react-qr-code";
 
 function FormBuilder({ form }: { form: Form }) {
   const { setElements, setSelectedElement } = useDesigner();
@@ -80,6 +81,13 @@ function FormBuilder({ form }: { form: Form }) {
               Anyone with the link can view and submit the form
             </h3>
             <div className="my-4 flex flex-col gap-2 items-center w-full border-b pb-4">
+              <QRCode
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={shareUrl}
+                viewBox={`0 0 256 256`}
+              />
+
               <Input
                 className="w-full"
                 readOnly
