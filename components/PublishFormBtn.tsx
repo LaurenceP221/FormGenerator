@@ -13,13 +13,32 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { FaSpinner } from "react-icons/fa";
-import { PublishForm } from "@/actions/form";
+import { PublishForm, UpdateFormContent } from "@/actions/form";
 import { toast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
+import useDesigner from "./hooks/useDesigner";
 
 function PublishFormBtn({ id }: { id: number }) {
+  const { elements } = useDesigner();
   const [loading, startTransition] = useTransition();
   const router = useRouter();
+  
+  const updateFormContent = async () => {
+    try {
+      const jsonElements = JSON.stringify(elements);
+      await UpdateFormContent(id, jsonElements);
+      toast({
+        title: "Success",
+        description: "Your form has been saved",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
+    }
+  };
 
   async function publishForm() {
     try {
@@ -40,7 +59,7 @@ function PublishFormBtn({ id }: { id: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="gap-2 text-white bg-gradient-to-r from-indigo-400 to-cyan-400">
+        <Button className="gap-2 text-white bg-gradient-to-r from-red-500 to-orange-500">
           <MdOutlinePublish className="h-4 w-4" />
           Publish
         </Button>
@@ -64,6 +83,7 @@ function PublishFormBtn({ id }: { id: number }) {
             disabled={loading}
             onClick={(e) => {
               e.preventDefault();
+              startTransition(updateFormContent);
               startTransition(publishForm);
             }}
           >
