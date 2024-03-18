@@ -136,7 +136,7 @@ function FormComponent({
           if (!submitValue) return;
           const valid = TextFieldFormElement.validate(element, e.target.value);
           setError(!valid);
-          if (!valid) return;
+          /* if (!valid) return; */
           submitValue(element.id, e.target.value);
         }}
         value={value}

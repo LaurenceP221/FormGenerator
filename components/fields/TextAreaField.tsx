@@ -28,6 +28,7 @@ import { cn } from "@/lib/utils";
 import { BsTextareaResize } from "react-icons/bs";
 import { Textarea } from "../ui/textarea";
 import { Slider } from "../ui/slider";
+//import { updateFormErrors  } from "../FormSubmitComponent";
 
 const type: ElementsType = "TextAreaField";
 
@@ -117,7 +118,7 @@ function FormComponent({
   defaultValue?: string;
 }) {
   const element = elementInstance as CustomInstance;
-
+  //const content = e.target.value;
   const [value, setValue] = useState(defaultValue || "");
   const [error, setError] = useState(false);
 
@@ -138,13 +139,21 @@ function FormComponent({
         rows={rows}
         placeholder={placeHolder}
         onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
+
+        
+         onBlur={(e) => {
           if (!submitValue) return;
+
           const valid = TextAreaFormElement.validate(element, e.target.value);
+
           setError(!valid);
-          if (!valid) return;
+
+          /* if (!valid) {
+            updateFormErrors(element, true);
+          }; */
+
           submitValue(element.id, e.target.value);
-        }}
+        }} 
         value={value}
       />
       {helperText && (
