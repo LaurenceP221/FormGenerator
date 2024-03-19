@@ -72,8 +72,8 @@ function FormBuilder({ form }: { form: Form }) {
           numberOfPieces={1000}
         />
         <div className="flex flex-col items-center justify-center h-full w-full">
-          <div className="max-w-md">
-            <h1 className="text-center text-4xl font-bold text-primary border-b pb-2 mb-10">
+          <div className="max-w-[500px]">
+            <h1 className="text-center text-4xl font-bold text-primary border-b pb-2 mt-5 mb-10">
               🎊🎊 Form Published 🎊🎊
             </h1>
             <h2 className="text-2xl">Share this form</h2>
