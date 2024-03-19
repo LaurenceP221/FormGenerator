@@ -147,7 +147,7 @@ async function SubmissionsTable({ id }: { id: number }) {
   });
 
   return (
-    <>
+    <div className="w-full pt-8 gap-4 mb-12">
       <h1 className="text-2xl font-bold my-4">Submissions</h1>
       <Table>
         <TableHeader>
@@ -184,7 +184,7 @@ async function SubmissionsTable({ id }: { id: number }) {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }
 
