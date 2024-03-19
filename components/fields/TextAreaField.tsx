@@ -149,7 +149,7 @@ function FormComponent({
           setError(!valid);
 
           /* if (!valid) {
-            updateFormErrors(element, true);
+            return
           }; */
 
           submitValue(element.id, e.target.value);

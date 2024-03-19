@@ -1,11 +1,13 @@
 import { authMiddleware } from "@clerk/nextjs";
+//const formUrl  = {form.shareURL};
 
 export default authMiddleware({
+  
   // Routes that can be accessed while signed out
-  publicRoutes: ['/submit'],
+  //publicRoutes: ['/submit'],
   // Routes that can always be accessed, and have
   // no authentication information
-  ignoredRoutes: ['/submit'],
+  ignoredRoutes: ['/submit/(.*)'],
 });
 
 export const config = {
