@@ -184,7 +184,7 @@ function FormCard({ form }: { form: Form }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="h-[30px] flex gap-2 truncate justify-between text-sm text-muted-foreground">
-        <Label className="h-[30px] text-ellipsis overflow-x-hidden w-1/2">
+        <Label className="h-[30px] w-1/2 text-ellipsis overflow-x-hidden">
           {form.description || "No description"}
         </Label>
         <DeleteFormBtn id={form.id} />

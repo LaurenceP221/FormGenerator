@@ -10,12 +10,23 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "./ui/dialog";
 import { DeleteForm } from "@/actions/form";
 import { toast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 
 function DeleteFormBtn({ id }: { id: number }) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const router = useRouter();
   const handleDeleteButtonClick = () => {
     try {
@@ -24,6 +35,7 @@ function DeleteFormBtn({ id }: { id: number }) {
         title: "Success",
         description: "Form deleted successfully",
       });
+
       router.push("/");
     } catch (error) {
       toast({
@@ -35,7 +47,10 @@ function DeleteFormBtn({ id }: { id: number }) {
   };
 
   return (
-    <Dialog>
+    <Dialog
+     /*  open={open} */
+      /* onClose={handleClose} */
+    >
       <DialogTrigger asChild>
         <Button
           variant={"destructive"}
@@ -53,8 +68,7 @@ function DeleteFormBtn({ id }: { id: number }) {
             <MdOutlineWarning />
           </DialogTitle>
           <DialogDescription>
-            Are you sure you want to PERMANENTLY 
-            DELETE this form and ALL of its
+            Are you sure you want to PERMANENTLY DELETE this form and ALL of its
             submissions?
           </DialogDescription>
         </DialogHeader>
@@ -66,6 +80,7 @@ function DeleteFormBtn({ id }: { id: number }) {
             <MdDeleteForever className="mr-2 h-4 w-4" />
             Delete
           </Button>
+          <DialogClose/>
         </DialogFooter>
       </DialogContent>
     </Dialog>
