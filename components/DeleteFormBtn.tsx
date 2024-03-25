@@ -18,8 +18,7 @@ import { useRouter } from "next/navigation";
 
 function DeleteFormBtn({ id }: { id: number }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  /* const ToggleState = setIsDialogOpen(!isDialogOpen); */
-
+  
   const router = useRouter();
   const handleDeleteButtonClick = () => {
     setIsDialogOpen(!isDialogOpen)
@@ -42,8 +41,6 @@ function DeleteFormBtn({ id }: { id: number }) {
 
   return (
     <Dialog
-    /*  open={open} */
-    /* onClose={handleClose} */
     >
       <DialogTrigger asChild>
         <Button
