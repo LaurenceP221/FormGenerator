@@ -163,18 +163,40 @@ export async function SubmitForm(formUrl: string, content: string) {
   }
 
 export async function GetFormWithSubmissions(id: number) {
-const user = await currentUser();
-if (!user) {
-    throw new UserNotFoundErr();
+    const user = await currentUser();
+    if (!user) {
+        throw new UserNotFoundErr();
+    }
+
+    return await prisma.form.findUnique({
+        where: {
+        userId: user.id,
+        id,
+        },
+        include: {
+        FormSubmissions: true,
+        },
+    });
 }
 
-return await prisma.form.findUnique({
-    where: {
-    userId: user.id,
-    id,
-    },
-    include: {
-    FormSubmissions: true,
-    },
-});
+export async function DeleteForm(id: number) {
+    const user = await currentUser();
+    if (!user) {
+        throw new UserNotFoundErr();
+    }
+
+    const deleteForm = prisma.form.deleteMany({
+        where: {
+          userId: user.id,
+          id,
+        },
+      })
+      
+    const deleteSubmissions = prisma.formSubmissions.deleteMany({
+        where: {
+          formId: id,
+        },
+      })
+    
+    return await prisma.$transaction([deleteSubmissions, deleteForm]);
 }
