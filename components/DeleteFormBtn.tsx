@@ -17,18 +17,12 @@ import { toast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 
 function DeleteFormBtn({ id }: { id: number }) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  /* const ToggleState = setIsDialogOpen(!isDialogOpen); */
 
   const router = useRouter();
   const handleDeleteButtonClick = () => {
+    setIsDialogOpen(!isDialogOpen)
     try {
       DeleteForm(id);
       toast({
@@ -48,8 +42,8 @@ function DeleteFormBtn({ id }: { id: number }) {
 
   return (
     <Dialog
-     /*  open={open} */
-      /* onClose={handleClose} */
+    /*  open={open} */
+    /* onClose={handleClose} */
     >
       <DialogTrigger asChild>
         <Button
@@ -80,7 +74,7 @@ function DeleteFormBtn({ id }: { id: number }) {
             <MdDeleteForever className="mr-2 h-4 w-4" />
             Delete
           </Button>
-          <DialogClose/>
+          <DialogClose />
         </DialogFooter>
       </DialogContent>
     </Dialog>
