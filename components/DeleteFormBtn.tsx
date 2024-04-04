@@ -1,5 +1,5 @@
 "use client";
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { MdDeleteForever, MdOutlineWarning } from "react-icons/md";
 import {
@@ -18,10 +18,10 @@ import { useRouter } from "next/navigation";
 
 function DeleteFormBtn({ id }: { id: number }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
+
   const router = useRouter();
   const handleDeleteButtonClick = () => {
-    setIsDialogOpen(!isDialogOpen)
+    setIsDialogOpen(!isDialogOpen);
     try {
       DeleteForm(id);
       toast({
@@ -40,8 +40,7 @@ function DeleteFormBtn({ id }: { id: number }) {
   };
 
   return (
-    <Dialog
-    >
+    <Dialog>
       <DialogTrigger asChild>
         <Button
           variant={"destructive"}
